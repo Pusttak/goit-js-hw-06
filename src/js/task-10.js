@@ -12,14 +12,18 @@ const refs = {
 refs.buttonCreate.addEventListener('click', createBoxes);
 refs.buttonReset.addEventListener('click', destroyBoxes);
 
+let countOfSquares = 0;
+
 function createBoxes() {
   const allBoxes = [];
   for (let i = 0; i < refs.inputNumber.value; i += 1) {
     const box = document.createElement('div');
-    box.style.width = 30 + (i*10) + 'px';
-    box.style.height = 30 + (i*10) + 'px';
+    box.style.width = 30 + (countOfSquares * 10) + 'px';
+    box.style.height = 30 + (countOfSquares * 10) + 'px';
     box.style.backgroundColor = getRandomHexColor();
     allBoxes.push(box);
+
+    countOfSquares += 1;
   }
   refs.listBoxes.append(...allBoxes);
 }
@@ -35,4 +39,5 @@ function createBoxes() {
 
 function destroyBoxes() {
   refs.listBoxes.innerHTML = '';
+  countOfSquares = 0;
 }
